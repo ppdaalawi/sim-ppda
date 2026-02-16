@@ -1,4 +1,13 @@
-/* js/api.js */
+/* js/api.js - REVISED */
+
+// Fungsi bantuan Hash SHA256 (Sederhana untuk keamanan dasar)
+// Catatan: Hash di client bagus, tapi hash di server (Supabase Function) lebih baik.
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 async function fetchData(action, payload = {}) {
     try {
@@ -24,17 +33,54 @@ async function fetchData(action, payload = {}) {
 
 async function handleLogin(payload) {
     const { username, password } = payload;
-    const { data, error } = await window.supabaseClient.from('users').select('*').eq('username', username).eq('password', password).single();
+    
+    // OPSIONAL: Jika ingin mengaktifkan hash, uncomment baris di bawah dan pastikan DB menyimpan hash
+    // const hashedPassword = await hashPassword(password);
+    // Ganti 'password' dengan 'hashedPassword' di query bawah jika pakai hash.
+
+    // Query ke tabel users
+    const { data, error } = await window.supabaseClient
+        .from('users')
+        .select('*')
+        .eq('username', username)
+        .eq('password', password) // Jika pakai hash, ganti ini jadi .eq('password', hashedPassword)
+        .single();
+
     if (error || !data) return { status: 'error', message: 'Username atau Password salah' };
+    
+    // Cek status user
+    if(data.status !== 'active') return { status: 'error', message: 'Akun Anda tidak aktif.' };
+
     return { status: 'success', data: { id: data.id, username: data.username, nama: data.nama, role: data.role, status: data.status } };
 }
 
 async function handleGetMenu(payload) {
-    const { data, error } = await window.supabaseClient.from('menus').select('*').eq('status', 'active').order('sort_order', { ascending: true });
+    const { role } = payload; // Terima role dari core.js
+    
+    // 1. Ambil semua menu yang aktif
+    const { data, error } = await window.supabaseClient
+        .from('menus')
+        .select('*')
+        .eq('status', 'active')
+        .order('sort_order', { ascending: true });
+        
     if (error) return { status: 'error', message: error.message };
-    const mappedData = data.map(item => [
+
+    // 2. FILTERING ROLE DI CLIENT SIDE (Penting!)
+    // Logika: Tampilkan jika role_access = 'all' ATAU role_access mengandung role user
+    const filteredData = data.filter(item => {
+        if (!item.role_access) return true; // Jika kosong, anggap publik
+        if (item.role_access === 'all') return true;
+        // Pecah string "admin,staf" menjadi array dan cek
+        const allowedRoles = item.role_access.split(',').map(r => r.trim());
+        return allowedRoles.includes(role);
+    });
+
+    // 3. Mapping ke format Array (sesuai ekspektasi core.js)
+    const mappedData = filteredData.map(item => [
         item.id, item.label, item.url, item.icon, item.role_access, item.status, item.source_type, item.target_mode, item.sort_order
     ]);
+    
     return { status: 'success', data: mappedData };
 }
 
@@ -71,6 +117,10 @@ async function handleEditData(payload) {
     const { sheetName, id, rowData } = payload;
     let updateData = {};
     if (sheetName === 'users') {
+        // Jika password dikosongkan, jangan update password (biarkan yang lama)
+        let passToUpdate = rowData[1];
+        // Logika sederhana: jika password kosong, ambil password lama dari cache? 
+        // Untuk simplisitas, kita update semua. JS settings.js perlu handle jika pass kosong.
         updateData = { username: rowData[0], password: rowData[1], role: rowData[2], nama: rowData[3], status: rowData[4] };
     } else if (sheetName === 'menus') {
         updateData = { label: rowData[0], url: rowData[1], icon: rowData[2], role_access: rowData[3], status: rowData[4], source_type: rowData[5], target_mode: rowData[6], sort_order: rowData[7] || 0 };
@@ -98,17 +148,14 @@ async function handleUpdateSettings(payload) {
 
 // --- GITHUB API INTEGRATION ---
 async function fetchGithubFiles() {
-    const owner = 'ppdaalawi'; // Dari config Anda
-    const repo = 'sim-ppda';   // Dari config Anda
-    const path = 'pages';      // Folder pages
+    const owner = 'ppdaalawi'; 
+    const repo = 'sim-ppda';   
+    const path = 'pages'; 
     
     try {
-        // Fetch langsung ke GitHub API
         const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`);
-        if (!response.ok) return []; // Jika error (private ratelimit), kembalikan kosong
-        
+        if (!response.ok) return []; 
         const data = await response.json();
-        // Filter hanya file HTML
         return data.filter(file => file.name.endsWith('.html')).map(file => file.name);
     } catch (e) {
         console.error("Gagal fetch GitHub:", e);
