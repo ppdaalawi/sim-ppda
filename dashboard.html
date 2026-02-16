@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1b5e20">
+    <title>Dashboard - SIM PPDA</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+</head>
+<body>
+
+    <!-- UI Components -->
+    <div id="app-loader" class="hidden"></div>
+    <div id="toast-container"></div>
+    
+    <!-- Overlay untuk Mobile -->
+    <div id="sidebar-overlay"></div>
+    
+    <!-- MODAL KONFIRMASI -->
+    <div id="confirm-modal" class="modal-overlay confirm-modal-overlay">
+        <div class="modal-box confirm-box" style="max-width: 350px; padding: 25px;">
+            <div class="confirm-icon-wrapper">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 id="confirm-title" style="text-align:center; margin: 10px 0 5px;">Konfirmasi</h3>
+            <p id="confirm-message" style="text-align:center; color: var(--text-grey); font-size: 14px;">Apakah Anda yakin?</p>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="confirm-no" class="btn btn-secondary" style="flex:1;">Batal</button>
+                <button id="confirm-yes" class="btn btn-danger" style="flex:1;">Ya, Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-wrapper">
+        
+        <!-- SIDEBAR -->
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-mosque logo-img" style="font-size: 30px; color: white;"></i>
+                <div class="header-text">
+                    <span>SIM PPDA</span>
+                    <small>Daruttauhid Al Alawi</small>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu" id="sidebar-menu-list"></ul>
+
+            <div class="sidebar-footer">
+                <div class="footer-text">
+                    <p>© 2023 Daruttauhid Al Alawi</p>
+                </div>
+                <button id="btn-logout" class="btn btn-danger btn-square" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div id="main-content">
+            <header id="topbar">
+                <button id="mobile-toggle" class="btn btn-secondary">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex-grow: 1;"></div>
+                
+                <!-- USER INFO REVISED -->
+                <div class="user-info">
+                    <div style="text-align: right; line-height: 1.3; margin-right: 10px;">
+                        <span id="user-name-display" style="font-weight: 600; display: block;">User</span>
+                        <small id="user-role-display" style="color: var(--text-grey); font-size: 11px; text-transform: capitalize;">Role</small>
+                    </div>
+                    <div class="user-avatar" id="user-avatar-display">U</div>
+                </div>
+
+            </header>
+
+            <main id="content-area">
+                <div class="text-center" style="margin-top: 50px; color: #999;">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Memuat...
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT PENTING -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/settings.js"></script> 
+</body>
+</html>
