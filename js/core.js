@@ -1,4 +1,4 @@
-/* js/core.js */
+/* js/core.js - REVISED */
 
 let loaderInterval = null;
 window.CURRENT_USER_ROLE = null; 
@@ -129,10 +129,8 @@ async function initDashboard() {
     document.getElementById('user-name-display').textContent = namaLengkap;
     document.getElementById('user-avatar-display').textContent = namaLengkap.charAt(0).toUpperCase();
     
-    // TAMBAHAN: Tampilkan Role di Header
     const roleDisplay = document.getElementById('user-role-display');
     if (roleDisplay) {
-        // Kapitalisasi huruf pertama
         roleDisplay.textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
     }
 
@@ -151,6 +149,7 @@ async function initDashboard() {
     }
 
     showLoader(true, "Memuat Menu");
+    // Kirim role user ke API untuk filtering
     const res = await fetchData('get_menu', { role: user.role });
     showLoader(false);
 
@@ -209,14 +208,32 @@ function handleMenuClick(menu, isFirstLoad) {
     } else loadPage(menu.url, null, menu.label);
 }
 
+// --- BAGIAN PALING PENTING: FIX SCRIPT EXECUTION ---
 async function loadPage(url, elementClick, pageTitle) {
     showLoader(true, "Memuat Halaman " + pageTitle);
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error('File tidak ditemukan');
         const htmlContent = await response.text();
-        document.getElementById('content-area').innerHTML = htmlContent;
+        
+        const contentArea = document.getElementById('content-area');
+        contentArea.innerHTML = htmlContent;
+        
+        // FIX: Eksekusi script di dalam HTML yang baru di-load
+        const scripts = contentArea.querySelectorAll('script');
+        scripts.forEach(oldScript => {
+            const newScript = document.createElement('script');
+            // Copy attributes
+            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            // Copy content
+            newScript.textContent = oldScript.textContent;
+            // Replace old with new to trigger execution
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+
         if (pageTitle) document.title = pageTitle + " - SIM PPDA";
+        
+        // Trigger custom event jika diperlukan
         if(url.includes('settings.html')) {
             if(typeof initSettingsLogic === 'function') initSettingsLogic();
         }
