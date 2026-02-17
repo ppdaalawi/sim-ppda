@@ -1,30 +1,27 @@
-// --- GITHUB API INTEGRATION (REVISED) ---
-async function fetchGithubFiles() {
-    // 1. Coba ambil konfigurasi GitHub
-    const owner = (typeof GITHUB_OWNER !== 'undefined') ? GITHUB_OWNER : null;
-    const repo = (typeof GITHUB_REPO !== 'undefined') ? GITHUB_REPO : null;
-    const path = (typeof GITHUB_PATH !== 'undefined') ? GITHUB_PATH : 'pages';
+/* js/config.js */
 
-    // 2. Jika Konfigurasi GitHub ada, coba fetch dari GitHub
-    if (owner && repo) {
-        try {
-            const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`);
-            if (response.ok) {
-                const data = await response.json();
-                return data.filter(file => file.name.endsWith('.html')).map(file => file.name);
-            } else {
-                console.warn("GitHub API Error (Mungkin Repo Private/Belum ada):", response.status);
-            }
-        } catch (e) {
-            console.error("Gagal fetch GitHub (Cek Koneksi):", e);
-        }
-    }
+const SUPABASE_URL = 'https://zlwrdxkjvxjfxkapudwj.supabase.co'; 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // Pastikan kunci lengkap
 
-    // 3. Jika GitHub gagal atau tidak dikonfigurasi, pakai Fallback Lokal
-    console.log("Menggunakan daftar file lokal (LOCAL_FILES)...");
-    if (typeof LOCAL_FILES !== 'undefined') {
-        return LOCAL_FILES;
+// --- KONFIGURASI GITHUB ---
+const GITHUB_OWNER = 'ppdaalawi'; 
+const GITHUB_REPO = 'sim-ppda';   
+const GITHUB_PATH = 'pages';      
+
+const LOCAL_FILES = [
+    'dashboard.html',
+    'settings.html',
+    'struktur.html'
+];
+
+// --- INISIALISASI ---
+try {
+    if (typeof supabase !== 'undefined') {
+        window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log("SUCCESS: Supabase Connected!");
+    } else {
+        console.error("ERROR: Library Supabase tidak ketemu.");
     }
-    
-    return [];
+} catch (err) {
+    console.error("ERROR: Gagal inisialisasi Supabase.", err);
 }
