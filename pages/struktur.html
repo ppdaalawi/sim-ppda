@@ -1,0 +1,162 @@
+<!-- 
+    INSTRUKSI EDIT:
+    1. Untuk ganti Foto: Cari 'URL_FOTO_ANDA', ganti dengan link gambar.
+       (Tips: Upload foto ke hosting gambar seperti Imgur atau langsung di folder assets).
+    2. Untuk ganti Nama: Cari bagian di antara tag <h4>...</h4>.
+    3. Untuk ganti Jabatan: Cari bagian di antara tag <p>...</p>.
+-->
+
+<style>
+    /* Pengaturan Tampilan Grid (Kotak-kotak) */
+    .struktur-grid {
+        display: grid;
+        /* auto-fit artinya jumlah kolom akan menyesuaikan ukuran layar HP/Laptop */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px; /* Jarak antar kartu */
+        padding: 10px 0;
+    }
+
+    /* Desain Kartu Profil */
+    .profile-card {
+        background: white;
+        padding: 20px 10px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        transition: transform 0.3s;
+    }
+
+    /* Efek mengangkat kartu saat di-hover */
+    .profile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Gambar Profil */
+    .profile-card img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%; /* Membuat gambar bulat */
+        object-fit: cover;
+        border: 4px solid var(--primary-light);
+        margin-bottom: 15px;
+        background-color: #eee; /* Warna background default */
+    }
+
+    .profile-card h4 {
+        color: var(--primary-dark);
+        margin: 0 0 5px 0;
+        font-size: 1.1rem;
+    }
+
+    .profile-card p {
+        color: var(--text-grey);
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    /* Judul Kategori (Misal: Inti, Divisi) */
+    .section-title {
+        color: var(--primary-dark);
+        font-size: 1.2rem;
+        margin: 30px 0 15px 0;
+        padding-left: 10px;
+        border-left: 5px solid var(--primary-main);
+    }
+</style>
+
+<div class="mb-2">
+    <h2 style="color: var(--primary-dark);">Struktur Organisasi</h2>
+    <p style="color: var(--text-grey);">Pengurus dan Staff Pondok Pesantren.</p>
+</div>
+
+<!-- ================== BAGIAN 1: PIMPINAN PUSAT ================== -->
+<h3 class="section-title">Pimpinan Pusat</h3>
+
+<div class="struktur-grid">
+    
+    <!-- KARTU 1 (Contoh: Pengasuh) -->
+    <div class="profile-card">
+        <!-- GANTI SRC dengan URL Foto Pengasuh -->
+        <img src="https://via.placeholder.com/150" alt="Foto Pengasuh">
+        <!-- GANTI NAMA -->
+        <h4>KH. Ahmad Alawi</h4>
+        <!-- GANTI JABATAN -->
+        <p>Pengasuh Pondok</p>
+    </div>
+
+    <!-- KARTU 2 (Contoh: Direktur) -->
+    <div class="profile-card">
+        <!-- GANTI SRC -->
+        <img src="https://via.placeholder.com/150" alt="Foto Direktur">
+        <h4>Ustadz Fulan</h4>
+        <p>Direktur Utama</p>
+    </div>
+
+    <!-- KARTU 3 (Contoh: Wakil) -->
+    <div class="profile-card">
+        <img src="https://via.placeholder.com/150" alt="Foto Wakil">
+        <h4>Ustadz Fulan II</h4>
+        <p>Wakil Direktur</p>
+    </div>
+
+</div>
+
+<!-- ================== BAGIAN 2: DIVISI PENDIDIKAN ================== -->
+<h3 class="section-title">Divisi Pendidikan</h3>
+
+<div class="struktur-grid">
+    
+    <!-- KARTU 1 Divisi -->
+    <div class="profile-card">
+        <img src="https://via.placeholder.com/150" alt="Foto">
+        <h4>Ustadz Muhammad</h4>
+        <p>Kepala Kurikulum</p>
+    </div>
+
+    <!-- KARTU 2 Divisi -->
+    <div class="profile-card">
+        <img src="https://via.placeholder.com/150" alt="Foto">
+        <h4>Ustadz Budi</h4>
+        <p>Waka Kesantrian</p>
+    </div>
+
+    <!-- KARTU 3 Divisi -->
+    <div class="profile-card">
+        <img src="https://via.placeholder.com/150" alt="Foto">
+        <h4>Ustadz Hamzah</h4>
+        <p>Waka Humas</p>
+    </div>
+
+</div>
+
+<!-- ================== BAGIAN 3: DIVISI KEUANGAN ================== -->
+<h3 class="section-title">Divisi Keuangan & Umum</h3>
+
+<div class="struktur-grid">
+    
+    <div class="profile-card">
+        <img src="https://via.placeholder.com/150" alt="Foto">
+        <h4>Ustadz Ridwan</h4>
+        <p>Bendahara</p>
+    </div>
+
+    <div class="profile-card">
+        <img src="https://via.placeholder.com/150" alt="Foto">
+        <h4>Ustadz Malik</h4>
+        <p>Sie. Perpustakaan</p>
+    </div>
+
+</div>
+
+<!-- 
+    TIPS MENAMBAH ORANG BARU:
+    Copy blok ini dan paste di dalam <div class="struktur-grid">...</div>
+    
+    <div class="profile-card">
+        <img src="URL_FOTO_ANDA" alt="Foto">
+        <h4>NAMA_LENGKAP</h4>
+        <p>JABATAN</p>
+    </div>
+-->
