@@ -9,11 +9,26 @@ async function hashPassword(password) {
     return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+/* js/api.js - Perbaikan Error "Client belum siap" */
+
 async function fetchData(action, payload = {}) {
     try {
-        let result;
-        if (typeof window.supabaseClient === 'undefined') throw new Error("Supabase Client belum siap.");
+        // 1. Cek koneksi Supabase dengan lebih toleran (Timeout Handler)
+        if (typeof window.supabaseClient === 'undefined') {
+            // Tunggu 500ms lalu cek lagi (maksimal 5 kali percobaan)
+            let attempts = 0;
+            while (typeof window.supabaseClient === 'undefined' && attempts < 10) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+            // Jika setelah menunggu masih belum siap, baru lempar error
+            if (typeof window.supabaseClient === 'undefined') {
+                throw new Error("Koneksi Supabase gagal dimuat. Cek koneksi internet Anda.");
+            }
+        }
 
+        let result;
+        // Switch case tetap sama...
         switch (action) {
             case 'login': result = await handleLogin(payload); break;
             case 'get_menu': result = await handleGetMenu(payload); break;
@@ -30,6 +45,9 @@ async function fetchData(action, payload = {}) {
         return { status: 'error', message: error.message };
     }
 }
+
+// ... Sisa kode fungsi handleLogin, handleGetMenu, dll tetap sama seperti sebelumnya ...
+// (Jangan hapus fungsi-fungsi di bawahnya)
 
 async function handleLogin(payload) {
     const { username, password } = payload;
@@ -162,3 +180,4 @@ async function fetchGithubFiles() {
         return [];
     }
 }
+
