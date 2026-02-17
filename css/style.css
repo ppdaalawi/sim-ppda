@@ -310,3 +310,21 @@ label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-
 
     .modal-box { width: 95%; margin: 10px; }
 }
+
+/* --- 10. CUSTOM LOGO STYLING --- */
+
+/* Logo di Halaman Login */
+.login-logo-img {
+    width: 60px;   /* Ukuran logo login */
+    height: auto;
+    /* Jika logo Anda hitam dan ingin diubah jadi putih, aktifkan baris bawah ini: */
+    /* filter: brightness(0) invert(1); */ 
+}
+
+/* Logo di Sidebar */
+.sidebar-logo-img {
+    width: 40px;   /* Ukuran logo sidebar */
+    height: auto;
+    /* Jika logo Anda hitam dan ingin diubah jadi putih, aktifkan baris bawah ini: */
+    /* filter: brightness(0) invert(1); */
+}
