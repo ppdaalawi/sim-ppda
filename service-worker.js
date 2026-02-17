@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sim-ppda-cache-v2';
+const CACHE_NAME = 'sim-ppda-cache-v1';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
