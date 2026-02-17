@@ -1,0 +1,26 @@
+{
+    "name": "SIM PPDA - Daruttauhid Al Alawi",
+    "short_name": "SIM PPDA",
+    "description": "Sistem Informasi Manajemen Pondok Pesantren Daruttauhid Al Alawi",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#e8f5e9",
+    "theme_color": "#1b5e20",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [],
+    "categories": ["education", "utilities"]
+}
