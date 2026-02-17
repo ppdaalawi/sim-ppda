@@ -1,4 +1,4 @@
-/* css/style.css - FULL REVISI FINAL V9 (Complete & Polished) */
+/* css/style.css - FULL REVISI FINAL V10 (PWA Ready & Logo Support) */
 
 /* --- 1. RESET & VARIABLES --- */
 :root {
@@ -39,38 +39,19 @@ body { background-color: var(--primary-bg); color: var(--text-dark); height: 100
     font-size: 14px;
 }
 
-/* Efek Hover Umum: Naik + Shadow */
-.btn:hover { 
-    transform: translateY(-2px); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
-}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
 .btn:active { transform: translateY(0); box-shadow: none; }
 
-/* Primary Button */
-.btn-primary { 
-    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-dark) 100%); 
-    color: var(--white); 
-}
+.btn-primary { background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-dark) 100%); color: var(--white); }
 .btn-primary:hover { opacity: 0.95; box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4); }
 
-/* Secondary Button */
-.btn-secondary { 
-    background-color: #f5f5f5; 
-    color: var(--text-dark); 
-    border: 1px solid #e0e0e0;
-}
+.btn-secondary { background-color: #f5f5f5; color: var(--text-dark); border: 1px solid #e0e0e0; }
 .btn-secondary:hover { background-color: #eeeeee; border-color: #bdbdbd; }
 
-/* Danger Button */
 .btn-danger { background-color: var(--danger); color: var(--white); }
 .btn-danger:hover { background-color: var(--danger-light); box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4); }
 
-/* Icon Buttons (Edit/Delete) */
-.btn-icon { 
-    width: 32px; height: 32px; padding: 0; border-radius: 6px; cursor: pointer; border: none;
-    display: inline-flex; align-items: center; justify-content: center;
-    transition: all 0.2s ease;
-}
+.btn-icon { width: 32px; height: 32px; padding: 0; border-radius: 6px; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
 .btn-icon:hover { transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .btn-red { background: #ffebee; color: var(--danger); }
 .btn-red:hover { background: #ffcdd2; }
@@ -82,37 +63,20 @@ body { background-color: var(--primary-bg); color: var(--text-dark); height: 100
 
 /* --- 5. FORMS (MODERN STYLE) --- */
 .form-control {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border: 1.5px solid rgba(46, 125, 50, 0.2);
-    border-radius: 8px;
-    font-size: 15px;
-    background: rgba(46, 125, 50, 0.03);
-    color: var(--text-dark);
-    transition: all 0.3s ease;
-    -webkit-appearance: none;
-    appearance: none;
+    width: 100%; padding: 12px 15px; margin-bottom: 15px;
+    border: 1.5px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-size: 15px;
+    background: rgba(46, 125, 50, 0.03); color: var(--text-dark);
+    transition: all 0.3s ease; -webkit-appearance: none; appearance: none;
 }
 
 select.form-control {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232e7d32'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 20px;
-    padding-right: 40px;
-    cursor: pointer;
+    background-repeat: no-repeat; background-position: right 10px center; background-size: 20px;
+    padding-right: 40px; cursor: pointer;
 }
 
 .form-control::placeholder { color: rgba(33, 33, 33, 0.4); opacity: 1; }
-
-.form-control:focus {
-    border-color: var(--primary-main);
-    background: #ffffff;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
-}
-
+.form-control:focus { border-color: var(--primary-main); background: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); }
 label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-dark); margin-bottom: 5px; }
 
 /* --- 6. COMPONENTS: LOADER & TOAST --- */
@@ -129,17 +93,8 @@ label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-
 @keyframes fadeOut { to { opacity: 0; } }
 
 /* --- 7. LOGIN PAGE STYLING (MODERN GLASSMORPHISM) --- */
-.login-body {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-main) 50%, var(--primary-light) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
+.login-body { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-main) 50%, var(--primary-light) 100%); display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; overflow: hidden; }
 
-/* Floating Shapes Animation */
 .floating-shapes { position: absolute; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 1; }
 .shape { position: absolute; border-radius: 50%; opacity: 0.1; animation: float 20s infinite ease-in-out; background: white; }
 .shape-1 { width: 300px; height: 300px; top: -150px; right: -100px; }
@@ -147,80 +102,35 @@ label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-
 .shape-3 { width: 150px; height: 150px; top: 50%; right: 10%; animation-delay: -10s; }
 @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(20px, -20px) rotate(5deg); } 50% { transform: translate(-10px, 20px) rotate(-5deg); } 75% { transform: translate(-20px, -10px) rotate(3deg); } }
 
-/* Glass Card */
-.glass-card {
-    position: relative; z-index: 10;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    width: 100%; max-width: 420px;
-    padding: 40px 30px;
-    border-radius: 16px;
-    animation: slideUp 0.6s ease-out forwards;
-}
+.glass-card { position: relative; z-index: 10; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); width: 100%; max-width: 420px; padding: 40px 30px; border-radius: 16px; animation: slideUp 0.6s ease-out forwards; }
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Header Modern */
 .login-header-modern { text-align: center; margin-bottom: 30px; }
-.icon-wrapper-modern {
-    width: 60px; height: 60px;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-main) 100%);
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 15px auto;
-    box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
-    animation: pulse-glow 3s infinite ease-in-out;
-}
-@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(46, 125, 50, 0.2); } 50% { box-shadow: 0 0 30px rgba(46, 125, 50, 0.4); } }
+.icon-wrapper-modern { width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-main) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3); }
+
+/* CUSTOM LOGO LOGIN */
+.login-logo-img { width: 45px; height: auto; filter: brightness(0) invert(1); } /* Auto putih */
 
 .login-header-modern h2 { color: var(--primary-dark); font-size: 1.5rem; margin-bottom: 5px; }
 .login-header-modern p { color: var(--primary-main); font-size: 14px; font-weight: 500; }
 
-/* Form Modern */
 .modern-form { display: flex; flex-direction: column; gap: 20px; }
 .form-group-modern label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; }
 .input-modern-wrapper { position: relative; }
-.input-modern-wrapper input {
-    width: 100%; padding: 14px 45px;
-    border-radius: 10px; font-size: 15px;
-    border: 1.5px solid rgba(46, 125, 50, 0.2);
-    background: rgba(46, 125, 50, 0.05);
-    color: var(--text-dark);
-    transition: all 0.3s ease;
-}
+.input-modern-wrapper input { width: 100%; padding: 14px 45px; border-radius: 10px; font-size: 15px; border: 1.5px solid rgba(46, 125, 50, 0.2); background: rgba(46, 125, 50, 0.05); color: var(--text-dark); transition: all 0.3s ease; }
 .input-modern-wrapper input:focus { outline: none; border-color: var(--primary-main); background: rgba(46, 125, 50, 0.1); box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); }
 .input-modern-wrapper input::placeholder { color: rgba(33, 33, 33, 0.4); }
 .input-modern-wrapper > i { position: absolute; left: 15px; top: 14px; color: var(--primary-main); font-size: 16px; }
+.toggle-modern-btn { position: absolute; right: 10px; top: 10px; background: none; border: none; cursor: pointer; color: var(--primary-main); padding: 5px; }
 
-.toggle-modern-btn {
-    position: absolute; right: 10px; top: 10px;
-    background: none; border: none; cursor: pointer;
-    color: var(--primary-main); padding: 5px;
-}
+.btn-modern { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-main) 100%); border: none; border-radius: 10px; color: white; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3); }
+.btn-modern:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4); }
 
-/* Button Modern */
-.btn-modern {
-    width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-main) 100%);
-    border: none; border-radius: 10px;
-    color: white; font-weight: 600; font-size: 15px; cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
-}
-.btn-modern:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4);
-}
-
-/* Success Box */
 .success-box { margin-top: 20px; padding: 15px; background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.2); border-radius: 10px; display: flex; align-items: center; gap: 15px; animation: successPop 0.5s ease-out; }
 .success-icon { width: 40px; height: 40px; background: rgba(76, 175, 80, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-main); font-weight: bold; }
 @keyframes successPop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
 .login-footer { text-align: center; margin-top: 25px; color: var(--text-grey); font-size: 12px; }
-
-/* Responsive Login */
 @media (max-width: 480px) { .glass-card { margin: 15px; padding: 30px 20px; } }
 
 /* --- 8. DASHBOARD LAYOUT --- */
@@ -229,7 +139,10 @@ label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-
 /* SIDEBAR */
 #sidebar { width: var(--sidebar-width); position: fixed; left: 0; top: 0; bottom: 0; background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-main) 100%); color: var(--white); display: flex; flex-direction: column; box-shadow: 2px 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease-in-out; z-index: 1001; }
 .sidebar-header { padding: 20px 15px; display: flex; align-items: center; justify-content: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
-.logo-img { width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1); }
+
+/* CUSTOM LOGO SIDEBAR */
+.sidebar-logo-img { width: 40px; height: auto; filter: brightness(0) invert(1); } /* Auto putih */
+
 .header-text { display: flex; flex-direction: column; }
 .header-text span { font-size: 1.2rem; font-weight: bold; line-height: 1.2; }
 .header-text small { font-size: 0.7rem; opacity: 0.8; letter-spacing: 0.5px; }
@@ -273,58 +186,18 @@ label { display: block; font-size: 13px; font-weight: 600; color: var(--primary-
 .confirm-icon-wrapper i { font-size: 1.8rem; color: var(--danger); }
 
 /* --- 9. RESPONSIVE DASHBOARD --- */
-/* Desktop */
 @media (min-width: 769px) {
     #mobile-toggle { display: none !important; }
     .sidebar-closed { transform: translateX(-100%); }
     .sidebar-closed + #main-content { margin-left: 0; }
 }
 
-/* Mobile - PERBAIKAN UTAMA */
 @media (max-width: 768px) {
     #mobile-toggle { display: inline-flex !important; }
-    
-    /* Sidebar jadi fixed overlay */
     #sidebar { transform: translateX(-100%); position: fixed; }
     #sidebar.sidebar-active { transform: translateX(0); }
-    
-    /* Main Content ambil full width */
     #main-content { margin-left: 0; width: 100%; }
-    
-    /* PERBAIKAN: Atur tinggi konten agar tidak menutupi navigasi browser */
-    #content-area {
-        padding: 15px;
-        height: auto;
-        /* Penting: Hitung tinggi viewport dikurangi tinggi topbar (60px) dan padding */
-        min-height: calc(100vh - 60px); 
-        /* Pastikan bisa scroll vertical */
-        overflow-y: auto; 
-        -webkit-overflow-scrolling: touch; /* Buat scroll halus di iPhone */
-    }
-    
-    /* Agar tabel tidak pecah/rusak */
-    .settings-card > div:last-child {
-        max-height: none !important; /* Hilangkan batas tinggi di mobile */
-        overflow-x: auto; /* Bisa geser kanan kiri kalau tabel lebar */
-    }
-
+    #content-area { padding: 15px; height: auto; min-height: calc(100vh - 60px); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .settings-card > div:last-child { max-height: none !important; overflow-x: auto; }
     .modal-box { width: 95%; margin: 10px; }
-}
-
-/* --- 10. CUSTOM LOGO STYLING --- */
-
-/* Logo di Halaman Login */
-.login-logo-img {
-    width: 60px;   /* Ukuran logo login */
-    height: auto;
-    /* Jika logo Anda hitam dan ingin diubah jadi putih, aktifkan baris bawah ini: */
-    /* filter: brightness(0) invert(1); */ 
-}
-
-/* Logo di Sidebar */
-.sidebar-logo-img {
-    width: 40px;   /* Ukuran logo sidebar */
-    height: auto;
-    /* Jika logo Anda hitam dan ingin diubah jadi putih, aktifkan baris bawah ini: */
-    /* filter: brightness(0) invert(1); */
 }
